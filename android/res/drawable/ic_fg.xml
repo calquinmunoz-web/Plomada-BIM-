@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Plomada: el peso de albañil, centrado en la zona segura del icono adaptable (108 dp) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:pathData="M54,28 L54,40" android:strokeColor="#3FA9F5" android:strokeWidth="4" android:strokeLineCap="round" />
+    <path android:pathData="M42,40 L66,40 L63,58 L54,78 L45,58 Z" android:strokeColor="#3FA9F5" android:strokeWidth="4" android:strokeLineJoin="round" android:fillColor="#1F2733" />
+    <path android:pathData="M45,58 L63,58" android:strokeColor="#3FA9F5" android:strokeWidth="4" android:strokeLineCap="round" />
+</vector>

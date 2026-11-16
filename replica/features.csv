@@ -1,0 +1,48 @@
+feature,area,priority,original,clone,notes
+Abrir un modelo 3D desde el dispositivo,abrir,must,yes,yes,IFC FBX GLB glTF OBJ
+Abrir desde almacenamiento en la nube,abrir,must,yes,yes,Google Drive en la app Android
+Federar varios modelos en una escena,abrir,must,yes,yes,
+Abrir archivos NWD de Navisworks,abrir,must,yes,partial,solo en la app Android a través de la cuenta de Autodesk del usuario; sin probar contra Autodesk
+Ajustar unidades y eje vertical por modelo,abrir,should,yes,yes,para FBX OBJ y GLB
+Abrir modelos muy pesados (cientos de MB),abrir,must,yes,no,Plomada carga el modelo entero en memoria; hace falta carga por partes e instancias
+Órbita zoom y desplazamiento táctil,navegar,must,yes,yes,
+Vistas estándar (planta frente laterales isométrica),navegar,must,yes,yes,
+Encuadrar selección,navegar,must,yes,yes,
+Vista paralela (sin perspectiva),navegar,should,yes,yes,añadida en esta mejora; teleobjetivo de 4 grados equivalente a ortogonal
+Cubo de vistas,navegar,could,yes,no,
+Caminar en primera persona con colisión,navegar,should,yes,yes,palanca táctil o teclado; colisión por rayos y gravedad; subir y bajar de nivel; sin vista en tercera persona
+Árbol de selección jerárquico,inspeccionar,must,yes,yes,modelo disciplina nivel categoría
+Propiedades del elemento,inspeccionar,must,yes,yes,incluye conjuntos de propiedades IFC
+Buscar elementos por nombre o propiedad,inspeccionar,must,yes,yes,añadida en esta mejora; búsqueda por texto no por condiciones
+Conjuntos de selección guardados,inspeccionar,should,yes,yes,añadida en esta mejora; duran mientras la sesión esté abierta
+Ocultar aislar y mostrar todo,apariencia,must,yes,yes,
+Modos sólido rayos X y alámbrico,apariencia,should,yes,yes,
+Anular color y transparencia por selección,apariencia,should,yes,yes,añadida en esta mejora
+Plano de sección en X Y Z,sección,must,yes,yes,
+Caja de sección ajustada a la selección,sección,should,yes,yes,añadida en esta mejora
+Tapas de corte (relleno de la sección),sección,could,yes,no,
+Medir distancia entre dos puntos con ajuste a vértices,medir,must,yes,yes,
+Medir ángulo área y distancia acumulada,medir,should,yes,yes,ángulo por tres puntos; área de contorno cerrado con perímetro; recorrido acumulado
+Distancia mínima entre dos elementos,medir,could,yes,no,
+Guardar puntos de vista con corte y ocultos,vistas,must,yes,yes,se guardan en el dispositivo
+Anotaciones (redline) sobre una vista,vistas,should,yes,yes,añadida en esta mejora; lápiz y flecha; sin texto ni nube
+Comentarios en vistas,vistas,could,yes,no,
+Prueba de choques entre dos conjuntos con tolerancia,choques,must,yes,partial,por cajas envolventes; el original compara triángulos
+Resaltar el choque y atenuar el resto,choques,must,yes,yes,
+Estados del choque (nuevo activo revisado aprobado resuelto),choques,must,yes,yes,
+Choques usando conjuntos guardados,choques,should,yes,yes,añadida en esta mejora
+Informe de choques exportable,choques,should,yes,yes,añadida en esta mejora; CSV en Android y portapapeles en web
+Choques por holgura y reglas para ignorar,choques,could,yes,no,
+Agrupar choques,choques,could,yes,no,
+Crear incidencia con chincheta en el modelo,incidencias,must,yes,yes,
+Tipo prioridad responsable y estado,incidencias,must,yes,yes,
+Incidencia desde un choque,incidencias,should,yes,yes,
+Informe de incidencias exportable,incidencias,should,yes,yes,añadida en esta mejora
+Fotos adjuntas a la incidencia,incidencias,should,yes,yes,cámara o galería; se guardan reducidas en el dispositivo; cámara de la app Android sin probar en tablet
+Fecha límite y avisos,incidencias,could,yes,no,
+Trabajo sin conexión,obra,must,yes,yes,la app Android lleva todo dentro; los NWD necesitan internet
+Planos 2D y hojas,obra,could,yes,no,
+Simulación 4D con programa de obra (TimeLiner),simulación,could,yes,no,
+Render fotorrealista,simulación,could,yes,skip,motor y bibliotecas de materiales de Autodesk
+Lectura nativa de NWD NWC RVT DWG,abrir,could,yes,skip,formatos propietarios de Autodesk
+Sincronización entre miembros del proyecto y permisos,nube,could,yes,skip,es la nube de Autodesk y su red de usuarios

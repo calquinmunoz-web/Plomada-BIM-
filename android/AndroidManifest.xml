@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.plomada.bim"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <uses-sdk android:minSdkVersion="24" android:targetSdkVersion="34" />
+
+    <!-- El WebView carga la app desde un origen https interno; algunos WebView exigen este permiso
+         aunque no haya tráfico. MainActivity responde 404 a cualquier otro host, así que la app
+         no envía ni descarga nada: los archivos de Drive los entrega la app de Google Drive. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <queries>
+        <package android:name="com.google.android.apps.docs" />
+        <intent><action android:name="android.media.action.IMAGE_CAPTURE" /></intent>
+    </queries>
+
+    <application
+        android:label="Plomada BIM"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/App"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboard|keyboardHidden|uiMode|density">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- «Abrir con» desde Drive, Mis archivos, correo, etc. -->
+            <intent-filter android:label="Plomada BIM">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:mimeType="application/octet-stream" />
+                <data android:mimeType="application/x-step" />
+                <data android:mimeType="application/ifc" />
+                <data android:mimeType="application/x-extension-ifc" />
+                <data android:mimeType="model/*" />
+            </intent-filter>
+
+            <!-- «Compartir / Enviar a» -->
+            <intent-filter android:label="Plomada BIM">
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="application/octet-stream" />
+                <data android:mimeType="application/x-step" />
+                <data android:mimeType="application/ifc" />
+                <data android:mimeType="application/x-extension-ifc" />
+                <data android:mimeType="model/*" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

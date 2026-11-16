@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Visor de Autodesk</title>
+<!-- Página aparte (se carga en un iframe) porque el visor de Autodesk trae su propia versión de THREE -->
+<link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css">
+<style>
+html,body{height:100%;margin:0;background:#11151b;color:#e7ebf1;font:15px/1.5 system-ui,sans-serif;overflow:hidden}
+#v{position:absolute;inset:0}
+#msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;background:#11151b;z-index:50}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div id="v"></div>
+<div id="msg">Cargando el visor de Autodesk…</div>
+<script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
+<script>
+(function(){
+  var urn=decodeURIComponent(location.hash.slice(1)), N=window.PlomadaNative||(window.parent&&window.parent.PlomadaNative), box=document.getElementById('msg');
+  function msg(t){ box.hidden=false; box.textContent=t; }
+  if(!window.Autodesk||!Autodesk.Viewing){ msg('No se pudo cargar el visor de Autodesk. Revisa la conexión a internet y vuelve a abrir el modelo.'); return; }
+  if(!N||!urn){ msg('Falta el modelo que se debe abrir.'); return; }
+  Autodesk.Viewing.Initializer({
+    env:'AutodeskProduction2', api:'streamingV2', language:'es',
+    getAccessToken:function(cb){
+      try{ var t=JSON.parse(N.apsViewerToken()); if(t.error)throw new Error(t.error); cb(t.token,t.expires); }
+      catch(e){ msg(e.message||'No se pudo obtener el acceso a Autodesk.'); }
+    }
+  },function(){
+    var viewer=new Autodesk.Viewing.GuiViewer3D(document.getElementById('v'));
+    if(viewer.start()>0){ msg('Esta tablet no puede iniciar el visor 3D (WebGL no disponible).'); return; }
+    msg('Abriendo el modelo…');
+    Autodesk.Viewing.Document.load('urn:'+urn,function(doc){
+      var node=doc.getRoot().getDefaultGeometry();
+      if(!node){ msg('El modelo convertido no contiene ninguna vista 3D.'); return; }
+      viewer.loadDocumentNode(doc,node).then(function(){ box.hidden=true; },function(e){ msg('No se pudo cargar la geometría del modelo. '+(e&&e.message||'')); });
+    },function(code,text){ msg('Autodesk no entregó el modelo (código '+code+'). '+(text||'')); });
+  });
+})();
+</script>
+</body>
+</html>
